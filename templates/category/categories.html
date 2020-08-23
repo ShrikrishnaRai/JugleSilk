@@ -1,0 +1,27 @@
+{% include 'navbar.html' %}
+{% block content %}
+    <h1>Product Categories</h1>
+    {% for instance in object_list %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+
+                <p>
+                    <a href="/category/{{ instance.id }}">
+
+                        {{ instance.id }}
+
+                        {{ instance.title }} - {{ instance.description }} - {{ instance.summary }}
+                    </a>
+
+                </p>
+                <button type="button" class="btn btn-primary" onclick="test()">EXPLORE</button>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+{% include 'footer.html' %}
+<script>
+    function test() {
+        alert('Hello World')
+    }
+</script>
