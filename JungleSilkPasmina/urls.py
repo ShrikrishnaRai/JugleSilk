@@ -19,6 +19,7 @@ from pages.views import home_view, contact_view, about_us
 from products.views import get_product, get_products
 from categories.views import product_categories, get_product_category
 from contactUs.views import contact_us_view
+from quoterequest.views import request_quote_view
 
 urlpatterns = [
     path('', home_view, name='home'),
@@ -29,5 +30,6 @@ urlpatterns = [
     path('product/<int:my_id>/', get_product, name='product'),
     path('category/<int:my_id>/', get_product_category, name='product_category'),
     path('categories/', product_categories, name='categories'),
-    path('products/', get_products, name='products')
+    path('products/', get_products, name='products'),
+    path('quoterequest/', request_quote_view, name='quoterequest')
 ]

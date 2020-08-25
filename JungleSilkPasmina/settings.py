@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'categories',
     'user',
     'blogs',
-    'contactUs'
+    'contactUs',
+    'quoterequest'
 ]
 
 MIDDLEWARE = [
