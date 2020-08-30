@@ -1,20 +1,37 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import (ListView)
+from categories.models import Categories
+from django.views import View
+
 
 # Create your views here.
-from categories.models import Categories
 
 
-def product_categories(request, *args, **kwargs):
+class CategoriesObjectMixin(object):
+    model = Categories
+
+    def get_category(self):
+        id = self.kwargs.get('id')
+        categoriesObject = None
+        if id is not None:
+            categoriesObject = get_object_or_404(self.model, id=id)
+        return categoriesObject
+
+
+class ListCategories(ListView):
+    template_name = "categories.html"
     queryset = Categories.objects.all()
-    context = {
-        "object_list": queryset
-    }
-    return render(request, "category/categories.html", context)
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            "object_list": self.get_queryset()
+        }
+        return render(request, self.template_name, context)
 
 
-def get_product_category(request, my_id):
-    obj = get_object_or_404(Categories, id=my_id)
-    context = {
-        "object": obj
-    }
-    return render(request, "category/detail.html", context)
+class GetCategory(CategoriesObjectMixin, View):
+    template_name = "detail.html"
+
+    def get(self, request, id=None, *args, **kwargs):
+        context = {'object': self.get_category()}
+        return render(request, self.template_name, context)

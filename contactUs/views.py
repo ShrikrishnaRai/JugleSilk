@@ -1,13 +1,13 @@
 from django.shortcuts import render
-from .forms import ContatctForm
+from .forms import ContactForm
 
 
 # Create your views here.
 def contact_us_view(request):
-    form = ContatctForm(request.POST or None)
+    form = ContactForm(request.POST or None)
     if form.is_valid():
         form.save()
-        form = ContatctForm()
+        form = ContactForm()
     context = {
         'form': form
     }

@@ -13,20 +13,21 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 {% include 'navbar.html' %}
 {% block content %}
-    <h1>Product Categories</h1>
-    <div class="d-flex align-items-center justify-content-between flex-wrap">
+    <h1>Products</h1>
+    <div class="d-flex align-items-center ">
         {% for instance in object_list %}
-            <div class="mt-1;md-1;ml-1;mr-1">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body" href="/category/{{ instance.id }}">
-                        <h5 class="card-title">{{ instance.title }}</h5>
-                        <H2>{{ instance.description }}</H2>
-                        {{ instance.summary }}
-                        <a href="/products" class="btn btn-outline-primary">EXPLORE</a>
-                    </div>
+            <div class="card mr-2 ml-2 mb-2 " style="width: 14rem;">
+                <div class="card-body ">
+                    <img class="card-img-top" src="{{ instance.productImage }}" alt="Product Image">
+                    <h5 class="card-title">{{ instance.title }}</h5>
+                    <a href="/products/{{ instance.id }}" class="btn btn-outline-primary col">EXPLORE</a>
                 </div>
             </div>
         {% endfor %}
     </div>
+
 {% endblock %}
 {% include 'footer.html' %}
+<script type="text/javascript">
+</script>
+

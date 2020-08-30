@@ -10,15 +10,19 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 {% include 'navbar.html' %}
+{% load bootstrap %}
 {% block content %}
-    <h1
-    >Contact Us</h1>
-    <form method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            {{ form.as_p }}
-        </div>
-        <input type="submit" value="Save">
-    </form>
+    <div class="container offset-md-2 col-md-8">
+        <h1 class="m-2">Contact Us</h1>
+        <form method="post" class="post-form">
+            <div class="form-group mr-5 ml-5">
+                <div class="col col-lg">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </div>
+                <input type="submit" value="SEND" class="btn btn-outline-primary col">
+            </div>
+        </form>
+    </div>
 {% endblock %}
 {% include 'footer.html' %}

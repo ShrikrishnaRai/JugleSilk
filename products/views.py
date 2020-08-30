@@ -2,20 +2,37 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
 # Create your views here.
+from django.views import View
+from django.views.generic import ListView
+
 from products.models import Product
 
 
-def get_product(request, my_id):
-    obj = get_object_or_404(Product, id=my_id)
-    context = {
-        "object": obj
-    }
-    return render(request, "product/detail.html", context)
+class ProductsObjectMixin(object):
+    model = Product
+
+    def get_product(self):
+        id = self.kwargs.get('id')
+        productObject = None
+        if id is not None:
+            productObject = get_object_or_404(self.model, id=id)
+        return productObject
 
 
-def get_products(request, *args, **kwargs):
+class ListProducts(ListView):
+    template_name = "products.html"
     queryset = Product.objects.all()
-    context = {
-        "object_list": queryset
-    }
-    return render(request, "product/products.html", context)
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            "object_list": self.get_queryset()
+        }
+        return render(request, self.template_name, context)
+
+
+class GetProduct(ProductsObjectMixin, View):
+    template_name = "detail.html"
+
+    def get(self, request, id=None, *args, **kwargs):
+        context = {'object': self.get_product()}
+        return render(request, self.template_name, context)
