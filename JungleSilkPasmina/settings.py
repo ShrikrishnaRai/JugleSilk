@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'user',
     'blogs',
     'contactUs',
-    'quoterequest'
+    'quoterequest',
+    'productEnquiries'
 ]
 
 MIDDLEWARE = [

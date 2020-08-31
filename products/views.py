@@ -31,7 +31,7 @@ class ListProducts(ListView):
 
 
 class GetProduct(ProductsObjectMixin, View):
-    template_name = "detail.html"
+    template_name = "productDetail.html"
 
     def get(self, request, id=None, *args, **kwargs):
         context = {'object': self.get_product()}

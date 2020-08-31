@@ -30,7 +30,7 @@ class ListCategories(ListView):
 
 
 class GetCategory(CategoriesObjectMixin, View):
-    template_name = "detail.html"
+    template_name = "productDetail.html"
 
     def get(self, request, id=None, *args, **kwargs):
         context = {'object': self.get_category()}
