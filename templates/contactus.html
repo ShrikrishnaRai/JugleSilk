@@ -11,19 +11,32 @@
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 {% include 'base.html' %}
 {% include 'navbar.html' %}
-{% load bootstrap %}
+{% load crispy_forms_tags %}
 {% block content %}
     <div class="container offset-md-2 col-md-8">
         <h1 class="m-2">Contact Us</h1>
         <form method="post" class="post-form">
-            <div class="form-group mr-5 ml-5">
-                <div class="col col-lg">
-                    {% csrf_token %}
-                    {{ form.as_p }}
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.name|as_crispy_field }}
                 </div>
-                <input type="submit" value="SEND" class="btn btn-outline-primary col">
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.email|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.phone|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.address|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-12 mb-0">
+                    {{ form.message|as_crispy_field }}
+                </div>
             </div>
-        </form>
+            <input type="submit" value="SEND" class="btn pull-right btn-success col-md-4">
+    </div>
+    </form>
     </div>
 {% endblock %}
 {% include 'footer.html' %}

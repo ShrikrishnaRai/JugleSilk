@@ -7,3 +7,4 @@ class ContactUs(models.Model):
     email = models.EmailField(null=True, max_length=255)
     phone = models.CharField(null=True, max_length=255)
     message = models.TextField(null=True)
+    address = models.CharField(null=True, max_length=255)

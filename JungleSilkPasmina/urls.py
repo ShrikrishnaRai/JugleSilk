@@ -16,8 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from pages.views import home_view, contact_view, about_us
-# from products.views import get_product, get_products
-# from categories.views import get_product_category
 from contactUs.views import contact_us_view
 from quoterequest.views import request_quote_view
 from productEnquiries.views import createEnquiry
@@ -28,12 +26,8 @@ urlpatterns = [
     path('contactUs/', contact_us_view, name='contactUs'),
     path('about/', about_us, name='about'),
     path('admin/', admin.site.urls),
-    # path('product/<int:my_id>/', get_product, name='product'),
-    # path('category/<int:my_id>/', get_product_category, name='product_category'),
-    # path('categories/', product_categories, name='categories'),
     path('categories/', include('categories.urls')),
     path('products/', include('products.urls')),
-    # path('products/', get_products, name='products'),
     path('quoterequest/', request_quote_view, name='quoterequest'),
     path('productEnquiry/', createEnquiry, name='productEnquiry'),
 ]

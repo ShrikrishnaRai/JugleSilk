@@ -10,11 +10,13 @@ class ContactForm(forms.ModelForm):
             'name',
             'email',
             'phone',
-            'message'
+            'message',
+            'address'
         )
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.TextInput(attrs={'class': 'form-control'}),
-            'phone': forms.TextInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control '}),
+            'email': forms.EmailInput(attrs={'class': 'form-control '}),
+            'phone': forms.NumberInput(attrs={'class': 'form-control'}),
             'message': forms.Textarea(attrs={'class': 'form-control'}),
+            'address': forms.TextInput(attrs={'class': 'form-control'}),
         }

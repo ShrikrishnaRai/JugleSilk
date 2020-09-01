@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third party
-    'bootstrapform',
+    'crispy_forms',
 
     # own
     'products',
@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'quoterequest',
     'productEnquiries'
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

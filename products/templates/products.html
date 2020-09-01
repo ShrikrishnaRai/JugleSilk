@@ -16,14 +16,16 @@
 {% block content %}
     <h1>Products</h1>
     <div class="d-flex align-items-center ">
-        {% for instance in object_list %}
+        {% for product in product_list %}
             <div class="card mr-2 ml-2 mb-2 " style="width: 14rem;">
                 <div class="card-body ">
-                    <img class="card-img-top" src="{{ instance.productImage }}" alt="Product Image">
-                    <h5 class="card-title">{{ instance.title }}</h5>
-                    <a href="/products/{{ instance.id }}" class="btn btn-outline-primary col">EXPLORE</a>
+                    <img class="card-img-top" src="{{ product.productImage }}" alt="Product Image">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <a href="/products/{{ product.id }}" class="btn btn-outline-primary col">EXPLORE</a>
                 </div>
             </div>
+        {% empty %}
+            Sorry no products available
         {% endfor %}
     </div>
 

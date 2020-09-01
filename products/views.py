@@ -2,21 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
 # Create your views here.
-from django.views import View
-from django.views.generic import ListView
+from django.views.decorators.csrf import csrf_protect
+from django.views.generic import ListView, DetailView
 
 from products.models import Product
-
-
-class ProductsObjectMixin(object):
-    model = Product
-
-    def get_product(self):
-        id = self.kwargs.get('id')
-        productObject = None
-        if id is not None:
-            productObject = get_object_or_404(self.model, id=id)
-        return productObject
 
 
 class ListProducts(ListView):
@@ -25,14 +14,24 @@ class ListProducts(ListView):
 
     def get(self, request, *args, **kwargs):
         context = {
-            "object_list": self.get_queryset()
+            "product_list": self.get_queryset()
+        }
+        return render(request, self.template_name, context)
+
+    # This method is used to search product with product title from navbar
+    def post(self, request, *args, **kwargs):
+        queryset = Product.objects.filter(title=request.POST['title'])
+        context = {
+            "product_list": queryset
         }
         return render(request, self.template_name, context)
 
 
-class GetProduct(ProductsObjectMixin, View):
-    template_name = "productDetail.html"
+class GetProduct(DetailView):
+    model = Product
+    template_name = 'productDetail.html'
 
-    def get(self, request, id=None, *args, **kwargs):
-        context = {'object': self.get_product()}
-        return render(request, self.template_name, context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product'] = Product.objects.get(id=self.kwargs['pk'])
+        return context

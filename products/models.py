@@ -11,3 +11,4 @@ class Product(models.Model):
     price = models.DecimalField(decimal_places=2, max_digits=1000)
     summary = models.TextField(default='Best quality Pashmina')
     category = models.ForeignKey(Categories, on_delete=models.SET_NULL, null=True)
+    colors = models.CharField(max_length=120, null=True)
