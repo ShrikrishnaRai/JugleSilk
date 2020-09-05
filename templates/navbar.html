@@ -11,8 +11,8 @@
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <link rel="icon" href="https://static.thenounproject.com/png/1277800-200.png" type="image/icon type">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Jungle Silk Pashmina</a>
-    <a class="navbar-brand" href="/quoterequest">Request A Quote</a>
+    <a class="navbar-brand" href="/" style="font-family: Roboto">Jungle Silk Pashmina</a>
+    <a class="navbar-brand" href="/quoterequest" style="font-family: Roboto">Request A Quote</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                <a style="font-family: Roboto" class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                   role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Quick Find
                 </a>
@@ -36,7 +37,8 @@
         </ul>
         <form class="form-inline my-2 my-lg-0" method="post" action="/products/">
             {% csrf_token %}
-            <input class="form-control mr-sm-2" name="title" type="search" placeholder="Search Products" aria-label="Search">
+            <input class="form-control mr-sm-2" name="title" type="search" placeholder="Search Products"
+                   aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>

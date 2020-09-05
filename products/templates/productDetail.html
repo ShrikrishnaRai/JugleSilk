@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static '/products/details.css' %}">
 
@@ -25,8 +24,8 @@
         <div class="row">
             <aside class="col-sm-5 border-right">
                 <article class="gallery-wrap">
-                    <div class="img-big-wrap">
-                        <div><a href="#"><img src="https://s9.postimg.org/tupxkvfj3/image.jpg"></a></div>
+                    <div class="img-big-wrap parent">
+                        <div id="heading"><a href="#"><img src="{{ product.productImage.url }}"></a></div>
                     </div> <!-- slider-product.// -->
                     <div class="img-small-wrap">
                         <div class="item-gallery"><img src="https://s9.postimg.org/tupxkvfj3/image.jpg"></div>
@@ -147,10 +146,35 @@
             </div>
         </div>
     </div>
+    <p style="font-family: Roboto; font-size: 25px">You may like</p>
+    <div class="d-flex align-items-center flex-wrap ml-5 mt-2">
+        {% for product in similar_products %}
+            <div class="card mr-2 ml-2 mb-2 " style="width: 14rem;">
+                <div class="card-body ">
+                    <img class="card-img-top" src="{{ product.productImage.url }}" alt="Product Image">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <a href="/products/{{ product.id }}" class="btn btn-outline-primary col">EXPLORE</a>
+                </div>
+            </div>
+        {% empty %}
+            Sorry no products available
+        {% endfor %}
+    </div>
 {% endblock %}
 
 <!--container.//-->
+<style>
+    .parent {
+        text-align: center;
+    }
 
+    #heading {
+        display: inline-block;
+        *display: inline;
+        text-align: left;
+    }
+</style>
 
 <br><br><br>
 {% include 'footer.html' %}
+

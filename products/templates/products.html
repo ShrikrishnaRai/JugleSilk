@@ -15,11 +15,11 @@
 {% include 'navbar.html' %}
 {% block content %}
     <h1>Products</h1>
-    <div class="d-flex align-items-center ">
+    <div class="d-flex align-items-center flex-wrap ml-5">
         {% for product in product_list %}
             <div class="card mr-2 ml-2 mb-2 " style="width: 14rem;">
                 <div class="card-body ">
-                    <img class="card-img-top" src="{{ product.productImage }}" alt="Product Image">
+                    <img class="card-img-top" src="{{ product.productImage.url }}" alt="Product Image">
                     <h5 class="card-title">{{ product.title }}</h5>
                     <a href="/products/{{ product.id }}" class="btn btn-outline-primary col">EXPLORE</a>
                 </div>

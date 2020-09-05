@@ -19,6 +19,11 @@ from pages.views import home_view, contact_view, about_us
 from contactUs.views import contact_us_view
 from quoterequest.views import request_quote_view
 from productEnquiries.views import createEnquiry
+from . import settings
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+# urlpatterns += staticfiles_urlpatterns()
 
 urlpatterns = [
     path('', home_view, name='home'),
@@ -31,3 +36,6 @@ urlpatterns = [
     path('quoterequest/', request_quote_view, name='quoterequest'),
     path('productEnquiry/', createEnquiry, name='productEnquiry'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

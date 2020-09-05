@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import ListView, DetailView
 
+from categories.models import Categories
 from products.models import Product
 
 
@@ -33,5 +34,10 @@ class GetProduct(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['product'] = Product.objects.get(id=self.kwargs['pk'])
+        product = Product.objects.get(id=self.kwargs['pk'])
+        context['product'] = product
+        categories = Categories.objects.get(id=product.category.id)
+        context['similar_products'] = categories.products.all()
         return context
+
+
