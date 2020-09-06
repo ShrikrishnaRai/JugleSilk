@@ -7,7 +7,21 @@
 {% include 'base.html' %}
 {% include 'navbar.html' %}
 {% include 'Carousel.html' %}
-<div class="mr-5 ml-5 mt-5 md-2 mb-2">
+<div class="d-flex align-items-center flex-wrap ml-5">
+    {% for gallery in galleries %}
+        <div class="card mr-2 ml-2 mb-2 " style="width: 14rem;">
+            <div class="card-body ">
+                <img class="card-img-top" src="{{ gallery.image.url }}" alt="Product Image">
+                <a href="/gallery/{{ gallery.id }}" class="btn btn-outline-primary col">VIEW</a>
+            </div>
+        </div>
+    {% empty %}
+        Sorry no products available
+    {% endfor %}
+</div>
+
+
+<div class="mt-5 md-2 mb-2">
     <div class="embed-responsive embed-responsive-21by9">
         <iframe
                 class="mt-1;ml-1;mr-1;md-1"

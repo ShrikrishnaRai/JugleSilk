@@ -35,6 +35,7 @@ urlpatterns = [
     path('products/', include('products.urls')),
     path('quoterequest/', request_quote_view, name='quoterequest'),
     path('productEnquiry/', createEnquiry, name='productEnquiry'),
+    path('gallery/', include('gallery.urls'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()
