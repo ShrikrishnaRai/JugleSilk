@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     # own
     'products',
     'categories',
-    'user',
     'blogs',
     'contactUs',
     'quoterequest',
