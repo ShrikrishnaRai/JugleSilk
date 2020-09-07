@@ -1,0 +1,7 @@
+{% include 'navbar.html' %}
+<center><h3>{{ blog.title }}</h3></center>
+<img class="card-img-top pl-md-2 pr-md-2 " style="height: 20rem" src="{{ blog.blogsImage.url }}"
+     alt="{{ blog.description }}">
+<p class="ml-2 mt-2">{{ blog.description }}</p>
+<p class="ml-2 mt-2">{{ blog.content }}</p>
+{% include 'footer.html' %}

@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from pages.views import home_view, about_us
 from contactUs.views import contact_us_view
-from blogs.views import blogs
 from quoterequest.views import request_quote_view
 from productEnquiries.views import createEnquiry
 from . import settings
@@ -29,7 +28,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('', home_view, name='home'),
     path('contactUs/', contact_us_view, name='contactUs'),
-    path('blogs/', blogs, name='blogs'),
+    path('blogs/', include('blogs.urls')),
     path('about/', about_us, name='about'),
     path('admin/', admin.site.urls),
     path('categories/', include('categories.urls')),

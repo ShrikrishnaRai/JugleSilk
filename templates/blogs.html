@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% include 'navbar.html' %}
+<center><p class="mt-2" style="font-size: 150%">Blogs</p>
+</center>
+<div class="d-flex align-items-center flex-wrap ml-5 mt-3">
+    {% for blog in blogs %}
+        <div class="card mr-2 ml-2 mb-2 " style="width: 30%;">
+            <div class="card-body ">
+                <img class="card-img-top" src="{{ blog.blogsImage.url }}" alt="Product Image">
+                <h5 class="card-title">{{ blog.title }}</h5>
+                <a href="/blogs/{{ blog.id }}" class="btn btn-outline-primary col">EXPLORE</a>
+            </div>
+        </div>
+    {% empty %}
+        <p class="mt-2" style="font-size: 120% ; text-align: center">
+            Sorry no blogs available
+        </p>
+    {% endfor %}
+</div>
+{% include 'footer.html' %}
