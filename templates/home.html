@@ -1,27 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
 {% include 'base.html' %}
 {% include 'navbar.html' %}
 {% include 'Carousel.html' %}
-<div class="d-flex align-items-center flex-wrap ml-5">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
+        integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w=="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"
+        integrity="sha512-C1zvdb9R55RAkl6xCLTPt+Wmcz6s+ccOvcr6G57lbm8M2fbgn2SUjUJbQ13fEyjuLViwe97uJvwa1EUf4F1Akw=="
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css"
+      integrity="sha512-WEQNv9d3+sqyHjrqUZobDhFARZDko2wpWdfcpv44lsypsSuMO0kHGd3MQ8rrsBn/Qa39VojphdU6CMkpJUmDVw=="
+      crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+      integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw=="
+      crossorigin="anonymous"/>
+
+
+<div class="d-flex  flex-wrap ml-5 mt-md-5">
     {% for gallery in galleries %}
-        <div class="card mr-2 ml-2 mb-2 " style="width: 14rem;">
-            <div class="card-body ">
-                <img class="card-img-top" src="{{ gallery.image.url }}" alt="Product Image">
-                <a href="/gallery/{{ gallery.id }}" class="btn btn-outline-primary col">VIEW</a>
-            </div>
+        <div class="popup-gallery">
+            <a href="{{ gallery.image.url }}">
+                <img
+                     class="rounded mx-auto d-block img-fluid" src="{{ gallery.image.url }}" alt="Product Image">
+            </a>
         </div>
     {% empty %}
         Sorry no products available
     {% endfor %}
 </div>
-
-
-<div class="mt-5 md-2 mb-2">
+<div class="mt-5">
     <div class="embed-responsive embed-responsive-21by9">
         <iframe
                 class="mt-1;ml-1;mr-1;md-1"
@@ -31,6 +37,25 @@
                 allowfullscreen></iframe>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('.popup-gallery').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            tLoading: 'Loading image #%curr%...',
+            mainClass: 'mfp-img-mobile',
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+            },
+            image: {
+                tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+                titleSrc: function (item) {
+                    return item.el.attr('title') + '<small>Jungle Silk Pashmina</small>';
+                }
+            }
+        });
+    });
+</script>
 {% include 'footer.html' %}
-</body>
-</html>

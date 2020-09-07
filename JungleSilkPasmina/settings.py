@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'contactUs',
     'quoterequest',
     'productEnquiries',
-    'gallery'
+    'gallery',
+    'slider'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

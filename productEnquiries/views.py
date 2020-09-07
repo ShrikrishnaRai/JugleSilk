@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
 from productEnquiries.models import productEnquiries
+from products.models import Product
 
 
 @csrf_protect
@@ -12,9 +13,12 @@ def createEnquiry(request):
         phone = request.POST['phone']
         address = request.POST['address']
         fullname = request.POST['fullname']
-        enquiries = productEnquiries(email=email, address=address, fullName=fullname, phoneNumber=phone)
+        product_id = request.POST['productId']
+        product = Product.objects.get(id=product_id)
+        enquiries = productEnquiries(product=product, email=email, address=address, fullName=fullname,
+                                     phoneNumber=phone)
         enquiries.save()
-        response = {
+        context = {
             "message": "Your enquiry saved successfully"
         }
-        return render(request, 'productDetail.html', response)
+        return redirect('/products/' + product_id, context)
