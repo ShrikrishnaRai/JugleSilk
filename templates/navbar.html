@@ -12,7 +12,8 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" href="/quoterequest">Request a Quote</a>
-            </li>  <li class="nav-item">
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/categories">Product Categories</a>
             </li>
             <li class="nav-item dropdown">
@@ -30,7 +31,9 @@
             {% csrf_token %}
             <input required class="form-control mr-sm-2" name="title" type="text" placeholder="Search Product"
                    aria-label="Search">
-            <button class="btn btn-outline-primary waves-effect my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-primary waves-effect my-2 my-sm-0" type="submit"
+                    style="position: relative; z-index: 99">Search
+            </button>
         </form>
     </div>
 </nav>
