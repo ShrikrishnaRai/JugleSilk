@@ -24,8 +24,16 @@ from productEnquiries.views import createEnquiry
 from . import settings
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from rest_framework import routers
+from pages.views import UserViewSet, GroupViewSet
+from products.views import ProductViewSet
 
 # urlpatterns += staticfiles_urlpatterns()
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
+router.register(r'product-list', ProductViewSet)
 
 urlpatterns = [
     path('', home_view, name='home'),
@@ -38,6 +46,8 @@ urlpatterns = [
     path('quoterequest/', request_quote_view, name='quoterequest'),
     path('productEnquiry/', createEnquiry, name='productEnquiry'),
     path('gallery/', include('gallery.urls')),
+    path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
