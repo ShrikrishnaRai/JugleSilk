@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from django.urls import reverse
 
@@ -10,3 +12,6 @@ class Categories(models.Model):
     title = models.CharField(max_length=120)
     description = models.TextField(blank=True, null=True)
     summary = models.TextField(default='Best Quality Pashmina')
+    createdBy = models.TextField(default="John Doe")
+    created = models.DateTimeField(default=datetime.now, editable=False, null=False, blank=False)
+

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 
 # Create your models here.
@@ -10,3 +12,5 @@ class productEnquiries(models.Model):
     fullName = models.TextField()
     phoneNumber = models.TextField()
     address = models.TextField()
+    created = models.DateTimeField(default=datetime.now, editable=False, null=False, blank=False)
+

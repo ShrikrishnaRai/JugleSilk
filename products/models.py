@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.db import models
@@ -14,3 +16,6 @@ class Product(models.Model):
     summary = models.TextField(default='Best quality Pashmina')
     category = models.ForeignKey(Categories, on_delete=models.SET_NULL, null=True, related_name='products')
     colors = models.CharField(max_length=120, null=True)
+    createdBy = models.TextField(default="John Doe")
+    created = models.DateTimeField(default=datetime.now, editable=False, null=False, blank=False)
+
