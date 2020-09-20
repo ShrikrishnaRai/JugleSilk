@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
+
 from pages.views import home_view, about_us
 from contactUs.views import contact_us_view
 from quoterequest.views import request_quote_view
@@ -35,7 +37,7 @@ urlpatterns = [
     path('products/', include('products.urls')),
     path('quoterequest/', request_quote_view, name='quoterequest'),
     path('productEnquiry/', createEnquiry, name='productEnquiry'),
-    path('gallery/', include('gallery.urls'))
+    path('gallery/', include('gallery.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

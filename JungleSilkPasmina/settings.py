@@ -39,6 +39,8 @@ INSTALLED_APPS = [
 
     # Third party
     'crispy_forms',
+    'rest_framework',
+    'pygments',
 
     # own
     'products',
