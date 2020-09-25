@@ -18,22 +18,33 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 
 from pages.views import home_view, about_us
-from contactUs.views import contact_us_view
-from quoterequest.views import request_quote_view
-from productEnquiries.views import createEnquiry
+from contactUs.views import contact_us_view, ContactUsViewSet
+from quoterequest.views import request_quote_view, QuoteRequestViewSet
+from productEnquiries.views import createEnquiry, productEnquiriesViewSet
 from . import settings
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from rest_framework import routers
 from pages.views import UserViewSet, GroupViewSet
 from products.views import ProductViewSet
+from blogs.views import BlogViewSet
+from gallery.views import GalleryViewSet
+from slider.views import SliderViewSet
+from categories.views import CategoriesViewSet
 
 # urlpatterns += staticfiles_urlpatterns()
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
-router.register(r'product-list', ProductViewSet)
+router.register(r'products', ProductViewSet)
+router.register('blogs', BlogViewSet)
+router.register('quoteRequest', QuoteRequestViewSet)
+router.register('productEnquiry', productEnquiriesViewSet)
+router.register('gallery', GalleryViewSet)
+router.register('contactus', ContactUsViewSet)
+router.register('sliders', SliderViewSet)
+router.register('categories', CategoriesViewSet)
 
 urlpatterns = [
     path('', home_view, name='home'),
@@ -43,7 +54,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('categories/', include('categories.urls')),
     path('products/', include('products.urls')),
-    path('quoterequest/', request_quote_view, name='quoterequest'),
+    path('quoterequest/', request_quote_view, name='quoteRequest'),
     path('productEnquiry/', createEnquiry, name='productEnquiry'),
     path('gallery/', include('gallery.urls')),
     path('api/', include(router.urls)),

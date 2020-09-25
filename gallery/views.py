@@ -2,8 +2,16 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import DetailView, ListView
+from rest_framework import viewsets, permissions
 
 from gallery.models import Gallery
+from gallery.serializers import GallerySerializers
+
+
+class GalleryViewSet(viewsets.ModelViewSet):
+    queryset = Gallery.objects.all()
+    serializer_class = GallerySerializers
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class ListGallery(ListView):

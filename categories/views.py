@@ -1,10 +1,19 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import (ListView, DetailView)
+from rest_framework import viewsets, permissions
+
 from categories.models import Categories
 from django.views import View
 
 # Create your views here.
+from categories.serializers import CategoriesSerializers
 from products.models import Product
+
+
+class CategoriesViewSet(viewsets.ModelViewSet):
+    queryset = Categories.objects.all()
+    serializer_class = CategoriesSerializers
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class ListCategories(ListView):

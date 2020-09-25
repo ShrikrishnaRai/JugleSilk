@@ -2,8 +2,17 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
+from rest_framework import viewsets, permissions
+
 from productEnquiries.models import productEnquiries
+from productEnquiries.serializers import ProductEnquiriesSerializers
 from products.models import Product
+
+
+class productEnquiriesViewSet(viewsets.ModelViewSet):
+    queryset = productEnquiries.objects.all()
+    serializer_class = ProductEnquiriesSerializers
+    permission_classes = [permissions.IsAuthenticated]
 
 
 @csrf_protect

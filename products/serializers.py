@@ -11,6 +11,5 @@ class ProductSerializer(serializers.Serializer):
     summary = serializers.CharField(default='Best quality Pashmina')
     colors = serializers.CharField(max_length=120)
     createdBy = serializers.CharField(default="John Doe")
+    productImage = serializers.ImageField()
 
-    def create(self, validated_data):
-        return Product.objects.create(**validated_data)

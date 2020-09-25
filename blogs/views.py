@@ -2,8 +2,16 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import ListView, DetailView
+from rest_framework import viewsets, permissions
 
 from blogs.models import Blogs
+from blogs.serializers import BlogSerializer
+
+
+class BlogViewSet(viewsets.ModelViewSet):
+    queryset = Blogs.objects.all()
+    serializer_class = BlogSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class ListBlogs(ListView):
